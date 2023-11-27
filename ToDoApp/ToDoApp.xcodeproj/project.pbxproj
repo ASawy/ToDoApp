@@ -15,9 +15,14 @@
 		4625B3972B13E1E00097B77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4625B3952B13E1E00097B77A /* LaunchScreen.storyboard */; };
 		4625B3AB2B13E27C0097B77A /* ToDoShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4625B3A32B13E27B0097B77A /* ToDoShared.framework */; };
 		4625B3B22B13E27C0097B77A /* ToDoSharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B3B12B13E27C0097B77A /* ToDoSharedTests.m */; };
-		4625B3B32B13E27C0097B77A /* ToDoShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3A52B13E27B0097B77A /* ToDoShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4625B3B62B13E27C0097B77A /* ToDoShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4625B3A32B13E27B0097B77A /* ToDoShared.framework */; };
 		4625B3B72B13E27C0097B77A /* ToDoShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4625B3A32B13E27B0097B77A /* ToDoShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4625B3C32B1410100097B77A /* ToDoItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3C12B1410100097B77A /* ToDoItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4625B3C42B1410100097B77A /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B3C22B1410100097B77A /* ToDoItem.m */; };
+		4625B3C92B1417C90097B77A /* ToDoList.h in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3C72B1417C90097B77A /* ToDoList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4625B3CA2B1417C90097B77A /* ToDoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B3C82B1417C90097B77A /* ToDoList.m */; };
+		4625B3CC2B14209C0097B77A /* ToDoShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3CB2B14209C0097B77A /* ToDoShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4625B3D12B1425CF0097B77A /* ToDoSharedModule.modulemap in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3D02B1425CF0097B77A /* ToDoSharedModule.modulemap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,9 +73,14 @@
 		4625B3962B13E1E00097B77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4625B3982B13E1E00097B77A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4625B3A32B13E27B0097B77A /* ToDoShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToDoShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4625B3A52B13E27B0097B77A /* ToDoShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoShared.h; sourceTree = "<group>"; };
 		4625B3AA2B13E27C0097B77A /* ToDoSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4625B3B12B13E27C0097B77A /* ToDoSharedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoSharedTests.m; sourceTree = "<group>"; };
+		4625B3C12B1410100097B77A /* ToDoItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
+		4625B3C22B1410100097B77A /* ToDoItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
+		4625B3C72B1417C90097B77A /* ToDoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoList.h; sourceTree = "<group>"; };
+		4625B3C82B1417C90097B77A /* ToDoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoList.m; sourceTree = "<group>"; };
+		4625B3CB2B14209C0097B77A /* ToDoShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoShared.h; sourceTree = "<group>"; };
+		4625B3D02B1425CF0097B77A /* ToDoSharedModule.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ToDoSharedModule.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +147,10 @@
 		4625B3A42B13E27B0097B77A /* ToDoShared */ = {
 			isa = PBXGroup;
 			children = (
-				4625B3A52B13E27B0097B77A /* ToDoShared.h */,
+				4625B3CB2B14209C0097B77A /* ToDoShared.h */,
+				4625B3D02B1425CF0097B77A /* ToDoSharedModule.modulemap */,
+				4625B3C52B1412ED0097B77A /* ToDoItem */,
+				4625B3C62B1417AB0097B77A /* ToDoList */,
 			);
 			path = ToDoShared;
 			sourceTree = "<group>";
@@ -150,6 +163,24 @@
 			path = ToDoSharedTests;
 			sourceTree = "<group>";
 		};
+		4625B3C52B1412ED0097B77A /* ToDoItem */ = {
+			isa = PBXGroup;
+			children = (
+				4625B3C12B1410100097B77A /* ToDoItem.h */,
+				4625B3C22B1410100097B77A /* ToDoItem.m */,
+			);
+			path = ToDoItem;
+			sourceTree = "<group>";
+		};
+		4625B3C62B1417AB0097B77A /* ToDoList */ = {
+			isa = PBXGroup;
+			children = (
+				4625B3C72B1417C90097B77A /* ToDoList.h */,
+				4625B3C82B1417C90097B77A /* ToDoList.m */,
+			);
+			path = ToDoList;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -157,7 +188,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4625B3B32B13E27C0097B77A /* ToDoShared.h in Headers */,
+				4625B3D12B1425CF0097B77A /* ToDoSharedModule.modulemap in Headers */,
+				4625B3CC2B14209C0097B77A /* ToDoShared.h in Headers */,
+				4625B3C92B1417C90097B77A /* ToDoList.h in Headers */,
+				4625B3C32B1410100097B77A /* ToDoItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +338,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4625B3C42B1410100097B77A /* ToDoItem.m in Sources */,
+				4625B3CA2B1417C90097B77A /* ToDoList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +587,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = ToDoShared/ToDoSharedModule.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morsy.ToDoShared;
@@ -584,6 +621,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = ToDoShared/ToDoSharedModule.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morsy.ToDoShared;

@@ -1,0 +1,14 @@
+//
+//  ToDoSharedModule.modulemap
+//  ToDoShared
+//
+//  Created by Sawy on 27.11.23.
+//
+
+module ToDoSharedModule {
+    header "ToDoShared/ToDoList.h"
+    
+    // Exclude all other headers from the public interface
+    exclude header "*" 
+    export *
+}
