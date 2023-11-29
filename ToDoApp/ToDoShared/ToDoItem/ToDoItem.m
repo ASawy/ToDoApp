@@ -19,13 +19,21 @@
 @implementation ToDoItem
 
 static NSUInteger rootTaskIdCounter = 1;
+static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
 
 // MARK: Lifecycle
-- (void)dealloc {
-    [_title release];
-    [_subtasks release];
-    [_taskId release];
-    [super dealloc];
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _title = @"";
+        _completed = NO;
+        _subtasks = [NSMutableArray array];
+        _taskId = @"";
+        
+        rootTaskIdCounter = 1;
+        taskIdCounters = [NSMutableDictionary dictionary];
+    }
+    return self;
 }
 
 // MARK: Public functions
@@ -35,20 +43,14 @@ static NSUInteger rootTaskIdCounter = 1;
 }
 
 - (void)createSubtaskWithTitle:(NSString *)title parentTaskId:(NSString *)parentTaskId {
-    static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        taskIdCounters = [NSMutableDictionary dictionary];
-    });
-
     NSNumber *counter = taskIdCounters[parentTaskId];
     if (!counter) {
         counter = @1;
     }
-
+    
     self.title = [title copy];
     self.taskId = [NSString stringWithFormat:@"%@.%lu", parentTaskId ?: @"", [counter unsignedLongValue]];
-
+    
     taskIdCounters[parentTaskId] = @(counter.unsignedIntegerValue + 1);
 }
 
@@ -66,7 +68,7 @@ static NSUInteger rootTaskIdCounter = 1;
 
 - (void)markSubtaskAndChildrenCompleted:(BOOL)completed {
     self.completed = completed;
-
+    
     for (ToDoItem *subtask in self.subtasks) {
         [subtask markSubtaskAndChildrenCompleted:completed];
     }

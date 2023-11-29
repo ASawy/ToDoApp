@@ -24,11 +24,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [_tasks release];
-    [super dealloc];
-}
-
 // MARK: Public functions
 - (void)addTaskWithTitle:(NSString *)title {
     ToDoItem *newTask = [[ToDoItem alloc] init];
@@ -53,14 +48,12 @@
 - (void)deleteTaskWithId:(NSString *)taskId {
     ToDoItem *taskToDelete = [self findTaskWithId:taskId];
     [self.tasks removeObject:taskToDelete];
-    [taskToDelete release];
 }
 
 - (void)deleteSubtaskWithId:(NSString *)subtaskId {
     ToDoItem *subtaskToDelete = [self findTaskWithId:subtaskId];
     ToDoItem *parentTask = [self findTaskWithId:[subtaskId componentsSeparatedByString:@"."].firstObject];
     [parentTask.subtasks removeObject:subtaskToDelete];
-    [subtaskToDelete release];
 }
 
 - (void)setTaskWithId:(NSString *)taskId completed:(BOOL)completed {

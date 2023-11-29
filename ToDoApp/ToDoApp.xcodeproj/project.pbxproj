@@ -14,7 +14,6 @@
 		4625B3942B13E1E00097B77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4625B3932B13E1E00097B77A /* Assets.xcassets */; };
 		4625B3972B13E1E00097B77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4625B3952B13E1E00097B77A /* LaunchScreen.storyboard */; };
 		4625B3AB2B13E27C0097B77A /* ToDoShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4625B3A32B13E27B0097B77A /* ToDoShared.framework */; };
-		4625B3B22B13E27C0097B77A /* ToDoSharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B3B12B13E27C0097B77A /* ToDoSharedTests.m */; };
 		4625B3B62B13E27C0097B77A /* ToDoShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4625B3A32B13E27B0097B77A /* ToDoShared.framework */; };
 		4625B3B72B13E27C0097B77A /* ToDoShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4625B3A32B13E27B0097B77A /* ToDoShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4625B3C32B1410100097B77A /* ToDoItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3C12B1410100097B77A /* ToDoItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +22,8 @@
 		4625B3CA2B1417C90097B77A /* ToDoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B3C82B1417C90097B77A /* ToDoList.m */; };
 		4625B3CC2B14209C0097B77A /* ToDoShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3CB2B14209C0097B77A /* ToDoShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4625B3D12B1425CF0097B77A /* ToDoSharedModule.modulemap in Headers */ = {isa = PBXBuildFile; fileRef = 4625B3D02B1425CF0097B77A /* ToDoSharedModule.modulemap */; };
+		46696CEC2B154A1C0019C102 /* ToDoItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46696CEB2B154A1C0019C102 /* ToDoItemTests.swift */; };
+		46696CEE2B155CA30019C102 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46696CED2B155CA30019C102 /* ToDoListTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,13 +75,15 @@
 		4625B3982B13E1E00097B77A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4625B3A32B13E27B0097B77A /* ToDoShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToDoShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4625B3AA2B13E27C0097B77A /* ToDoSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4625B3B12B13E27C0097B77A /* ToDoSharedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoSharedTests.m; sourceTree = "<group>"; };
 		4625B3C12B1410100097B77A /* ToDoItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
 		4625B3C22B1410100097B77A /* ToDoItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
 		4625B3C72B1417C90097B77A /* ToDoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoList.h; sourceTree = "<group>"; };
 		4625B3C82B1417C90097B77A /* ToDoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoList.m; sourceTree = "<group>"; };
 		4625B3CB2B14209C0097B77A /* ToDoShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoShared.h; sourceTree = "<group>"; };
 		4625B3D02B1425CF0097B77A /* ToDoSharedModule.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ToDoSharedModule.modulemap; sourceTree = "<group>"; };
+		46696CEA2B154A1C0019C102 /* ToDoSharedTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToDoSharedTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		46696CEB2B154A1C0019C102 /* ToDoItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemTests.swift; sourceTree = "<group>"; };
+		46696CED2B155CA30019C102 /* ToDoListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +161,9 @@
 		4625B3B02B13E27C0097B77A /* ToDoSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				4625B3B12B13E27C0097B77A /* ToDoSharedTests.m */,
+				46696CEA2B154A1C0019C102 /* ToDoSharedTests-Bridging-Header.h */,
+				46696CEB2B154A1C0019C102 /* ToDoItemTests.swift */,
+				46696CED2B155CA30019C102 /* ToDoListTests.swift */,
 			);
 			path = ToDoSharedTests;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 					};
 					4625B3A92B13E27C0097B77A = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 						TestTargetID = 4625B3862B13E1DF0097B77A;
 					};
 				};
@@ -347,7 +353,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4625B3B22B13E27C0097B77A /* ToDoSharedTests.m in Sources */,
+				46696CEC2B154A1C0019C102 /* ToDoItemTests.swift in Sources */,
+				46696CEE2B155CA30019C102 /* ToDoListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3RN592736K;
@@ -646,6 +654,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.morsy.ToDoSharedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "ToDoSharedTests/ToDoSharedTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToDoApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ToDoApp";
 			};
@@ -655,6 +666,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3RN592736K;
@@ -663,6 +675,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.morsy.ToDoSharedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "ToDoSharedTests/ToDoSharedTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToDoApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ToDoApp";
 			};
