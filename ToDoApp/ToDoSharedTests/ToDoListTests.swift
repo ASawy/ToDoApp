@@ -108,11 +108,12 @@ class ToDoListTests: XCTestCase {
             let taskId = tasks.first?.taskId ?? ""
             toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
             
-            toDoList.setTaskWithId("1", completed: true)
-            toDoList.setTaskWithId("1.1", completed: true)
+            let subtaskId = (tasks.first?.subtasks as? [ToDoItem])?.first?.taskId ?? ""
+            toDoList.setTaskWithId(taskId, completed: true)
+            toDoList.setTaskWithId(subtaskId, completed: true)
             
             XCTAssertTrue(tasks.first?.isTaskCompleted() ?? false)
-            XCTAssertTrue(toDoList.isTaskCompleted(withId: "1.1"))
+            XCTAssertTrue(toDoList.isTaskCompleted(withId: subtaskId))
         } else {
             XCTFail("Failed to unwrap tasks")
         }

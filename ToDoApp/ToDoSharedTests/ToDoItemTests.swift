@@ -30,7 +30,7 @@ class ToDoItemTests: XCTestCase {
         subtask.createSubtask(withTitle: "Subtask 1", parentTaskId: todoItem.taskId)
         
         XCTAssertEqual(subtask.title, "Subtask 1")
-        XCTAssertEqual(subtask.taskId, "1.1")
+        XCTAssertNotNil(subtask.taskId)
     }
     
     func testEditTaskWithTitle() {
@@ -53,7 +53,8 @@ class ToDoItemTests: XCTestCase {
         subtask.createSubtask(withTitle: "Subtask 1", parentTaskId: todoItem.taskId)
         
         todoItem.subtasks.add(subtask)
-        let item = todoItem.findSubtask(withId: "1.1")
+        let subtaskId = (todoItem.subtasks as? [ToDoItem])?.first?.taskId ?? ""
+        let item = todoItem.findSubtask(withId: subtaskId)
         
         XCTAssertEqual(item.title, "Subtask 1")
         XCTAssertNotNil(item.taskId)

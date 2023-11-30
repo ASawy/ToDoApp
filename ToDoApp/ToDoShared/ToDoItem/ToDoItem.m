@@ -30,7 +30,6 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
         _subtasks = [NSMutableArray array];
         _taskId = @"";
         
-        rootTaskIdCounter = 1;
         taskIdCounters = [NSMutableDictionary dictionary];
     }
     return self;
