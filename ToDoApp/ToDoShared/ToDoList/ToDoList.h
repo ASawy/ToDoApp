@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ToDoList : NSObject
 
-@property (nonatomic, strong, readonly) NSMutableArray<ToDoItem *> *tasks;
-
+- (NSMutableArray<ToDoItem *> *)getTasks;
 - (void)addTaskWithTitle:(NSString *)title;
 - (void)addSubtaskToTaskWithId:(NSString *)taskId subtaskTitle:(NSString *)subtaskTitle;
 - (void)editTaskWithId:(NSString *)taskId newTitle:(NSString *)newTitle;

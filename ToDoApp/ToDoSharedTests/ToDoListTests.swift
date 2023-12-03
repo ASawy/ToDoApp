@@ -20,7 +20,7 @@ class ToDoListTests: XCTestCase {
     func testAddTaskWithTitle() {
         toDoList.addTask(withTitle: "Task 1")
         
-        if let tasks = toDoList.tasks as? [ToDoItem] {
+        if let tasks = toDoList.getTasks() as? [ToDoItem] {
             XCTAssertEqual(tasks.count, 1)
             XCTAssertEqual(tasks.first?.title, "Task 1")
         } else {
@@ -31,7 +31,7 @@ class ToDoListTests: XCTestCase {
     func testAddSubtaskToTaskWithIdSubtaskTitle() {
         toDoList.addTask(withTitle: "Task 1")
         
-        if let tasks = toDoList.tasks as? [ToDoItem] {
+        if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
             toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
             
@@ -49,7 +49,7 @@ class ToDoListTests: XCTestCase {
     func testEditTaskWithIdNewTitle() {
         toDoList.addTask(withTitle: "Original Title")
         
-        if let tasks = toDoList.tasks as? [ToDoItem] {
+        if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
             toDoList.editTask(withId: taskId, newTitle: "Updated Title")
             XCTAssertEqual(tasks.first?.title, "Updated Title")
@@ -62,11 +62,11 @@ class ToDoListTests: XCTestCase {
         toDoList.addTask(withTitle: "Task 1")
         toDoList.addTask(withTitle: "Task 2")
         
-        if let tasks = toDoList.tasks as? [ToDoItem] {
+        if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
             toDoList.deleteTask(withId: taskId)
             
-            if let tasks = toDoList.tasks as? [ToDoItem] {
+            if let tasks = toDoList.getTasks() as? [ToDoItem] {
                 XCTAssertEqual(tasks.count, 1)
                 XCTAssertEqual(tasks.first?.title, "Task 2")
             } else {
@@ -80,7 +80,7 @@ class ToDoListTests: XCTestCase {
     func testDeleteSubtaskWithId() {
         toDoList.addTask(withTitle: "Task 1")
         
-        if let tasks = toDoList.tasks as? [ToDoItem] {
+        if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
             toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
             
@@ -104,7 +104,7 @@ class ToDoListTests: XCTestCase {
     func testSetTaskWithIdCompleted() {
         toDoList.addTask(withTitle: "Task 1")
         
-        if let tasks = toDoList.tasks as? [ToDoItem] {
+        if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
             toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
             
@@ -122,7 +122,7 @@ class ToDoListTests: XCTestCase {
     func testMarkSubtaskAndChildrenCompleted() {
         toDoList.addTask(withTitle: "Task 1")
         
-        if let tasks = toDoList.tasks as? [ToDoItem] {
+        if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
             toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
             

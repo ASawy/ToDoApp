@@ -25,6 +25,10 @@
 }
 
 // MARK: Public functions
+- (NSMutableArray<ToDoItem *> *)getTasks {
+    return self.tasks;
+}
+
 - (void)addTaskWithTitle:(NSString *)title {
     ToDoItem *newTask = [[ToDoItem alloc] init];
     [newTask createTaskWithTitle:title];
