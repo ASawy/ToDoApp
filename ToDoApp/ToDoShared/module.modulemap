@@ -1,0 +1,13 @@
+//
+//  ToDoSharedModule.modulemap
+//  ToDoShared
+//
+//  Created by Sawy on 27.11.23.
+//
+
+framework module ToDoShared {
+    header "ToDoItem.h"
+    header "ToDoList.h"
+    
+    export *
+}
