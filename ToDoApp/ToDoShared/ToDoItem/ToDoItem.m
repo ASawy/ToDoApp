@@ -19,7 +19,7 @@
 @implementation ToDoItem
 
 static NSUInteger rootTaskIdCounter = 1;
-static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
+static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
 
 // MARK: Lifecycle
 - (instancetype)init {
@@ -29,8 +29,6 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
         _completed = NO;
         _subtasks = [NSMutableArray array];
         _taskId = @"";
-        
-        taskIdCounters = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -42,6 +40,10 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
 }
 
 - (void)createSubtaskWithTitle:(NSString *)title parentTaskId:(NSString *)parentTaskId {
+    if (!taskIdCounters) {
+        taskIdCounters = [NSMutableDictionary dictionary];
+    }
+    
     NSNumber *counter = taskIdCounters[parentTaskId];
     if (!counter) {
         counter = @1;
