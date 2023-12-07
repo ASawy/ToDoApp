@@ -9,31 +9,37 @@
 
 @interface ToDoList ()
 
-@property (nonatomic, strong) NSMutableArray<ToDoItem *> *tasks;
-
 @end
 
 @implementation ToDoList
+
+NSMutableArray<ToDoItem *> *tasks;
 
 // MARK: Lifecycle
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _tasks = [NSMutableArray array];
+        tasks = [[NSMutableArray<ToDoItem *> alloc] init];
     }
     return self;
 }
 
+- (void)dealloc
+{
+    [tasks release];
+    
+    [super dealloc];
+}
+
 // MARK: Public functions
 - (NSMutableArray<ToDoItem *> *)getTasks {
-    return self.tasks;
+    return tasks;
 }
 
 - (void)addTaskWithTitle:(NSString *)title {
     ToDoItem *newTask = [[ToDoItem alloc] init];
     [newTask createTaskWithTitle:title];
-    [self.tasks addObject:newTask];
-    [newTask release];
+    [tasks addObject:newTask];
 }
 
 - (void)addSubtaskToTaskWithId:(NSString *)taskId subtaskTitle:(NSString *)subtaskTitle {
@@ -41,7 +47,6 @@
     ToDoItem *newSubtask = [[ToDoItem alloc] init];
     [newSubtask createSubtaskWithTitle:subtaskTitle parentTaskId:parentTask.taskId];
     [parentTask.subtasks addObject:newSubtask];
-    [newSubtask release];
 }
 
 - (void)editTaskWithId:(NSString *)taskId newTitle:(NSString *)newTitle {
@@ -51,7 +56,7 @@
 
 - (void)deleteTaskWithId:(NSString *)taskId {
     ToDoItem *taskToDelete = [self findTaskWithId:taskId];
-    [self.tasks removeObject:taskToDelete];
+    [tasks removeObject:taskToDelete];
 }
 
 - (void)deleteSubtaskWithId:(NSString *)subtaskId {
@@ -87,7 +92,7 @@
 
 // MARK: Private functions
 - (ToDoItem *)findTaskWithId:(NSString *)taskId {
-    for (ToDoItem *task in self.tasks) {
+    for (ToDoItem *task in tasks) {
         if ([task.taskId isEqualToString:taskId]) {
             return task;
         }

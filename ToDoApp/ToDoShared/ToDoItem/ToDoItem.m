@@ -27,16 +27,25 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
     if (self) {
         _title = @"";
         _completed = NO;
-        _subtasks = [NSMutableArray array];
+        _subtasks = [[NSMutableArray<ToDoItem *> alloc] init];
         _taskId = @"";
     }
     return self;
 }
 
+- (void)dealloc
+{
+    [_title release];
+    [_subtasks release];
+    [_taskId release];
+    
+    [super dealloc];
+}
+
 // MARK: Public functions
 - (void)createTaskWithTitle:(NSString *)title {
-    self.title = [title copy];
-    self.taskId = [NSString stringWithFormat:@"%lu", (unsigned long)rootTaskIdCounter++];
+    self.title = title;
+    self.taskId = [NSString stringWithFormat:@"%lu", (unsigned long)(rootTaskIdCounter++)];
 }
 
 - (void)createSubtaskWithTitle:(NSString *)title parentTaskId:(NSString *)parentTaskId {
@@ -45,18 +54,18 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
     }
     
     NSNumber *counter = taskIdCounters[parentTaskId];
-    if (!counter) {
+    if (counter == nil) {
         counter = @1;
     }
     
-    self.title = [title copy];
+    self.title = title;
     self.taskId = [NSString stringWithFormat:@"%@.%lu", parentTaskId ?: @"", [counter unsignedLongValue]];
     
     taskIdCounters[parentTaskId] = @(counter.unsignedIntegerValue + 1);
 }
 
 - (void)editTaskWithTitle:(NSString *)newTitle {
-    self.title = [newTitle copy];
+    self.title = newTitle;
 }
 
 - (void)setTaskCompleted:(BOOL)completed {
@@ -75,7 +84,7 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
     }
 }
 
-- (ToDoItem *)findSubtaskWithId:(NSString *)subtaskId {
+- (nullable ToDoItem *)findSubtaskWithId:(NSString *)subtaskId {
     for (ToDoItem *subtask in self.subtasks) {
         if ([subtask.taskId isEqualToString:subtaskId]) {
             return subtask;
