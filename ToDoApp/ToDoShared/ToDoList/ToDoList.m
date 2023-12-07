@@ -40,6 +40,7 @@ NSMutableArray<ToDoItem *> *tasks;
     ToDoItem *newTask = [[ToDoItem alloc] init];
     [newTask createTaskWithTitle:title];
     [tasks addObject:newTask];
+    [newTask release];
 }
 
 - (void)addSubtaskToTaskWithId:(NSString *)taskId subtaskTitle:(NSString *)subtaskTitle {
@@ -47,6 +48,7 @@ NSMutableArray<ToDoItem *> *tasks;
     ToDoItem *newSubtask = [[ToDoItem alloc] init];
     [newSubtask createSubtaskWithTitle:subtaskTitle parentTaskId:parentTask.taskId];
     [parentTask.subtasks addObject:newSubtask];
+    [newSubtask release];
 }
 
 - (void)editTaskWithId:(NSString *)taskId newTitle:(NSString *)newTitle {
