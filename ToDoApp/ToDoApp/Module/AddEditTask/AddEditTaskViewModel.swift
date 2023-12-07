@@ -37,6 +37,8 @@ class AddEditTaskViewModel {
             guard let task = self.task else { return }
             service.editTask(withId: task.taskId, newTitle: title)
         }
+        
+        title = "" // reset the title 
     }
 }
 
