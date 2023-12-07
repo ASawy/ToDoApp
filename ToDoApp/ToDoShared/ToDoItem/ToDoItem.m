@@ -84,7 +84,7 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
     }
 }
 
-- (nullable ToDoItem *)findSubtaskWithId:(NSString *)subtaskId {
+- (ToDoItem *)findSubtaskWithId:(NSString *)subtaskId {
     for (ToDoItem *subtask in self.subtasks) {
         if ([subtask.taskId isEqualToString:subtaskId]) {
             return subtask;
