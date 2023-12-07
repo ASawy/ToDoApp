@@ -56,6 +56,7 @@ private extension ToDoListViewController {
     func setupTableView() {
         view.addSubview(toDoListTableView)
         toDoListTableView.frame = view.bounds
+        toDoListTableView.separatorStyle = .none
         
         toDoListTableView.delegate = self
         toDoListTableView.dataSource = self
@@ -86,7 +87,8 @@ extension ToDoListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(with: viewModel.tasks[indexPath.row])
+        let cellViewModel = viewModel.createToDoTableCellViewModel(with: indexPath.row)
+        cell.configure(with: cellViewModel)
         return cell
     }
 }

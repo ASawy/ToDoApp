@@ -35,7 +35,17 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="checkmark.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="done:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hdE-Sk-zEb"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UaI-eY-qYt">
+                                <rect key="frame" x="16" y="49" width="288" height="1"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="TrM-dM-QpK"/>
+                                </constraints>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowtriangle.right.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GSp-Tg-ffg">
                                 <rect key="frame" x="274" y="12.666666666666664" width="30" height="25"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,9 +58,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GSp-Tg-ffg" secondAttribute="trailing" constant="16" id="2aa-AG-Epr"/>
+                            <constraint firstItem="UaI-eY-qYt" firstAttribute="leading" secondItem="bJN-M2-XQW" secondAttribute="leading" constant="16" id="4pJ-9x-m9h"/>
+                            <constraint firstAttribute="trailing" secondItem="UaI-eY-qYt" secondAttribute="trailing" constant="16" id="5k7-7V-zXS"/>
                             <constraint firstItem="1mB-8v-DKt" firstAttribute="centerY" secondItem="GSp-Tg-ffg" secondAttribute="centerY" id="TES-nl-sfJ"/>
                             <constraint firstItem="GSp-Tg-ffg" firstAttribute="centerY" secondItem="bJN-M2-XQW" secondAttribute="centerY" id="V3h-gb-RAq"/>
                             <constraint firstItem="RDM-u0-AdN" firstAttribute="centerY" secondItem="GSp-Tg-ffg" secondAttribute="centerY" id="XML-Rg-FXt"/>
+                            <constraint firstAttribute="bottom" secondItem="UaI-eY-qYt" secondAttribute="bottom" id="YZg-Hj-N46"/>
                             <constraint firstItem="1mB-8v-DKt" firstAttribute="leading" secondItem="RDM-u0-AdN" secondAttribute="trailing" constant="6" id="qsE-fe-IGV"/>
                             <constraint firstItem="GSp-Tg-ffg" firstAttribute="leading" secondItem="1mB-8v-DKt" secondAttribute="trailing" constant="6" id="xZu-yb-Lvd"/>
                             <constraint firstItem="RDM-u0-AdN" firstAttribute="leading" secondItem="bJN-M2-XQW" secondAttribute="leading" constant="16" id="ybr-f8-GQk"/>
@@ -75,6 +88,9 @@
     <resources>
         <image name="arrowtriangle.right.fill" catalog="system" width="128" height="113"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -27,6 +27,12 @@ class ToDoListViewModel {
         tasks = mapToDoItemToTaskItem(service.getTaskList())
     }
     
+    // MARK: Factory Functions
+    func createToDoTableCellViewModel(with  index: Int) -> ToDoTableCellViewModel {
+        let task = tasks[index]
+        return ToDoTableCellViewModel(task: task, service: service)
+    }
+    
     // MARR: User Action
     func addButtonTapped() {
         coordinator?.navigateToAddTaskView()

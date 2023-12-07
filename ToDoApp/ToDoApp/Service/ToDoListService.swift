@@ -11,6 +11,7 @@ protocol ToDoListServiceType {
     func getTaskList() -> [ToDoItem]
     func addTask(withtitle title: String)
     func editTask(withId id: String, newTitle title: String)
+    func setTaskCompleted(for taskId: String, completed: Bool)
 }
 
 class ToDoListService: ToDoListServiceType {
@@ -30,5 +31,9 @@ class ToDoListService: ToDoListServiceType {
     
     func editTask(withId id: String, newTitle title: String) {
         toDoList.editTask(withId: id, newTitle: title)
+    }
+    
+    func setTaskCompleted(for taskId: String, completed: Bool) {
+        toDoList.setTaskWithId(taskId, completed: completed)
     }
 }
