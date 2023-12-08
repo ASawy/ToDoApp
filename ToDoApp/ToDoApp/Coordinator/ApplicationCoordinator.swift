@@ -9,6 +9,7 @@ import UIKit
 
 protocol ToDoListCoordinatorDelegate: AnyObject {
     func navigateToAddTaskView()
+    func navigateToAddSubtaskView(with taskItem: TaskItem)
     func navigateToEditTaskView(with taskItem: TaskItem)
 }
 
@@ -35,14 +36,21 @@ class ApplicationCoordinator {
 
 extension ApplicationCoordinator: ToDoListCoordinatorDelegate {
     func navigateToAddTaskView() {
-        let viewModel = AddEditTaskViewModel(service: service)
+        let viewModel = AddEditTaskViewModel(service: service, taskState: .add)
+        let viewController = AddEditTaskViewController(viewModel: viewModel)
+        
+        rootNavigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func navigateToAddSubtaskView(with taskItem: TaskItem) {
+        let viewModel = AddEditTaskViewModel(service: service, task: taskItem, taskState: .addSubtask)
         let viewController = AddEditTaskViewController(viewModel: viewModel)
         
         rootNavigationController.pushViewController(viewController, animated: true)
     }
     
     func navigateToEditTaskView(with taskItem: TaskItem) {
-        let viewModel = AddEditTaskViewModel(service: service, task: taskItem)
+        let viewModel = AddEditTaskViewModel(service: service, task: taskItem, taskState: .edit)
         let viewController = AddEditTaskViewController(viewModel: viewModel)
         
         rootNavigationController.pushViewController(viewController, animated: true)

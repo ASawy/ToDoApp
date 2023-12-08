@@ -7,6 +7,12 @@
 
 import Combine
 
+enum TaskState {
+    case add
+    case addSubtask
+    case edit
+}
+
 class AddEditTaskViewModel {
     // MARK: Properties
     @Published var title: String = ""
@@ -15,37 +21,46 @@ class AddEditTaskViewModel {
     // MARK: private Properties
     private let service: ToDoListServiceType
     private let task: TaskItem?
+    private let taskState: TaskState
+    private var oldTitle = ""
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: Init
-    init(service: ToDoListServiceType, task: TaskItem? = nil) {
+    init(service: ToDoListServiceType, task: TaskItem? = nil, taskState: TaskState) {
         self.service = service
         self.task = task
-        self.title = task?.title ?? ""
+        self.taskState = taskState
+        
+        self.oldTitle = taskState == .edit ? task?.title ?? "" : ""
+        self.title = oldTitle
         bind()
-        
-        
     }
     
     // MARK: User actions
     func saveButtonTapped() {
-        if task == nil {
+        if taskState == .add {
             // Add new task
             service.addTask(withtitle: title)
-        } else {
+            
+        } else if taskState == .addSubtask {
+            // Add subtask
+            guard let task = self.task else { return }
+            service.addSubTask(toTaskId: task.taskId, subtaskTitle: title)
+            
+        } else if taskState == .edit {
             // Edit task
             guard let task = self.task else { return }
             service.editTask(withId: task.taskId, newTitle: title)
         }
         
-        title = "" // reset the title 
+        title = "" // reset the title
     }
 }
 
 private extension AddEditTaskViewModel {
     func bind() {
         $title
-            .map { !$0.isEmpty && $0 != self.task?.title}
+            .map { !$0.isEmpty && $0 != self.oldTitle}
             .assign(to: \.isButtonEnabled, on: self)
             .store(in: &cancellables)
     }

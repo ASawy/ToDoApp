@@ -98,4 +98,26 @@ extension ToDoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.taskDidSelect(at: indexPath.row)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
+            // Handle delete action
+            guard let self = self else { return }
+            
+            viewModel.deleteButtonTapped(at: indexPath.row)
+            completion(true)
+        }
+        
+        let configureAction = UIContextualAction(style: .normal, title: "Add Subtask") { [weak self] (action, view, completion) in
+            // Handle configure action
+            guard let self = self else { return }
+            
+            viewModel.addSubTaskButtonTapped(at: indexPath.row)
+            completion(true)
+        }
+        
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, configureAction])
+        swipeConfiguration.performsFirstActionWithFullSwipe = false
+        return swipeConfiguration
+    }
 }
