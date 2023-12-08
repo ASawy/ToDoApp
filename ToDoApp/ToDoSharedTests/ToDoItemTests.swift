@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import ToDoApp
+@testable import ToDoShared
 
 class ToDoItemTests: XCTestCase {
     var todoItem: ToDoItem!

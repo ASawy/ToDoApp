@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import ToDoApp
+@testable import ToDoShared
 
 class ToDoListTests: XCTestCase {
     var toDoList: ToDoList!
@@ -14,6 +14,7 @@ class ToDoListTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Initialize a new ToDoList before each test
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         toDoList = ToDoList()
     }
     
