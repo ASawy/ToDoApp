@@ -91,7 +91,6 @@
 		4625B3C82B1417C90097B77A /* ToDoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoList.m; sourceTree = "<group>"; };
 		4625B3CB2B14209C0097B77A /* ToDoShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoShared.h; sourceTree = "<group>"; };
 		4625B3D02B1425CF0097B77A /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		46696CEA2B154A1C0019C102 /* ToDoSharedTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToDoSharedTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		46696CEB2B154A1C0019C102 /* ToDoItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemTests.swift; sourceTree = "<group>"; };
 		46696CED2B155CA30019C102 /* ToDoListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTests.swift; sourceTree = "<group>"; };
 		46E468AF2B22536B00743EA3 /* ToDoTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableCellViewModel.swift; sourceTree = "<group>"; };
@@ -181,7 +180,6 @@
 		4625B3B02B13E27C0097B77A /* ToDoSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				46696CEA2B154A1C0019C102 /* ToDoSharedTests-Bridging-Header.h */,
 				46696CEB2B154A1C0019C102 /* ToDoItemTests.swift */,
 				46696CED2B155CA30019C102 /* ToDoListTests.swift */,
 			);
@@ -744,7 +742,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.morsy.ToDoSharedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "ToDoSharedTests/ToDoSharedTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -765,7 +763,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.morsy.ToDoSharedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "ToDoSharedTests/ToDoSharedTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToDoApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ToDoApp";
