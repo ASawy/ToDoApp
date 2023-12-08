@@ -33,7 +33,7 @@ class ToDoListTests: XCTestCase {
         
         if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
-            toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
+            toDoList.addSubtask(toTaskId: taskId, subtaskTitle: "Subtask 1")
             
             if let subTasks = tasks.first?.subtasks as? [ToDoItem] {
                 XCTAssertEqual(subTasks.count, 1)
@@ -82,7 +82,7 @@ class ToDoListTests: XCTestCase {
         
         if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
-            toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
+            toDoList.addSubtask(toTaskId: taskId, subtaskTitle: "Subtask 1")
             
             if let subTasks = tasks.first?.subtasks as? [ToDoItem] {
                 let subtaskId = subTasks.first?.taskId ?? ""
@@ -101,35 +101,17 @@ class ToDoListTests: XCTestCase {
         }
     }
     
-    func testSetTaskWithIdCompleted() {
+    func testSetTaskAndChildrenCompleted() {
         toDoList.addTask(withTitle: "Task 1")
         
         if let tasks = toDoList.getTasks() as? [ToDoItem] {
             let taskId = tasks.first?.taskId ?? ""
-            toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
-            
-            let subtaskId = (tasks.first?.subtasks as? [ToDoItem])?.first?.taskId ?? ""
-            toDoList.setTaskWithId(taskId, completed: true)
-            toDoList.setTaskWithId(subtaskId, completed: true)
-            
-            XCTAssertTrue(tasks.first?.isTaskCompleted() ?? false)
-            XCTAssertTrue(toDoList.isTaskCompleted(withId: subtaskId))
-        } else {
-            XCTFail("Failed to unwrap tasks")
-        }
-    }
-    
-    func testMarkSubtaskAndChildrenCompleted() {
-        toDoList.addTask(withTitle: "Task 1")
-        
-        if let tasks = toDoList.getTasks() as? [ToDoItem] {
-            let taskId = tasks.first?.taskId ?? ""
-            toDoList.addSubtaskToTask(withId: taskId, subtaskTitle: "Subtask 1")
+            toDoList.addSubtask(toTaskId: taskId, subtaskTitle: "Subtask 1")
             
             if let subtasks = tasks.first?.subtasks as? [ToDoItem] {
                 let subtaskId = subtasks.first?.taskId ?? ""
-                toDoList.addSubtaskToTask(withId: subtaskId, subtaskTitle: "Subtask 2")
-                toDoList.markSubtaskAndChildrenCompleted(subtaskId, completed: true)
+                toDoList.addSubtask(toTaskId: subtaskId, subtaskTitle: "Subtask 2")
+                toDoList.setTaskAndChildrenCompleted(subtaskId, completed: true)
                 
                 XCTAssertTrue(tasks.first?.isTaskCompleted() ?? false)
                 XCTAssertTrue(subtasks.first?.isTaskCompleted() ?? false)

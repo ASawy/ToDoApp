@@ -14,13 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSMutableArray<ToDoItem *> *)getTasks;
 - (void)addTaskWithTitle:(NSString *)title;
-- (void)addSubtaskToTaskWithId:(NSString *)taskId subtaskTitle:(NSString *)subtaskTitle;
+- (void)addSubtaskToTaskId:(NSString *)taskId subtaskTitle:(NSString *)subtaskTitle;
 - (void)editTaskWithId:(NSString *)taskId newTitle:(NSString *)newTitle;
 - (void)deleteTaskWithId:(NSString *)taskId;
 - (void)deleteSubtaskWithId:(NSString *)subtaskId;
-- (void)setTaskWithId:(NSString *)taskId completed:(BOOL)completed;
-- (BOOL)isTaskCompletedWithId:(NSString *)taskId;
-- (void)markSubtaskAndChildrenCompleted:(NSString *)subtaskId completed:(BOOL)completed;
+- (void)setTaskAndChildrenCompleted:(NSString *)subtaskId completed:(BOOL)completed;
 
 @end
 

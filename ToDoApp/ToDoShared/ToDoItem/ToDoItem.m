@@ -9,28 +9,47 @@
 
 @interface ToDoItem ()
 
+@property (nonatomic, copy) NSString *taskId;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) BOOL completed;
 @property (nonatomic, strong) NSMutableArray<ToDoItem *> *subtasks;
-@property (nonatomic, copy) NSString *taskId;
 
 @end
 
 @implementation ToDoItem
 
 static NSUInteger rootTaskIdCounter = 1;
-static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
+static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
 
 // MARK: Lifecycle
 - (instancetype)init {
     self = [super init];
     if (self) {
+        _taskId = @"";
         _title = @"";
         _completed = NO;
         _subtasks = [[NSMutableArray<ToDoItem *> alloc] init];
-        _taskId = @"";
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        _taskId = [coder decodeObjectForKey:@"TaskId"];
+        _title = [coder decodeObjectForKey:@"Title"];
+        _completed = [coder decodeBoolForKey:@"Completed"];
+        NSMutableArray<ToDoItem *> *array = [coder decodeObjectForKey:@"Subtasks"];
+        _subtasks = [[NSMutableArray<ToDoItem *> alloc] initWithArray:array];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:_taskId forKey:@"TaskId"];
+    [coder encodeObject:_title forKey:@"Title"];
+    [coder encodeBool:_completed forKey:@"Completed"];
+    [coder encodeObject:_subtasks forKey:@"Subtasks"];
 }
 
 - (void)dealloc
@@ -50,7 +69,7 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
 
 - (void)createSubtaskWithTitle:(NSString *)title parentTaskId:(NSString *)parentTaskId {
     if (!taskIdCounters) {
-        taskIdCounters = [NSMutableDictionary dictionary];
+        taskIdCounters = [[NSMutableDictionary<NSString *, NSNumber *> alloc] init];
     }
     
     NSNumber *counter = taskIdCounters[parentTaskId];
@@ -76,11 +95,11 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters = nil;
     return self.completed;
 }
 
-- (void)markSubtaskAndChildrenCompleted:(BOOL)completed {
+- (void)markTaskAndChildrenCompleted:(BOOL)completed {
     self.completed = completed;
     
     for (ToDoItem *subtask in self.subtasks) {
-        [subtask markSubtaskAndChildrenCompleted:completed];
+        [subtask markTaskAndChildrenCompleted:completed];
     }
 }
 

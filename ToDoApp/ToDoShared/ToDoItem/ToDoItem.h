@@ -9,19 +9,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ToDoItem : NSObject
+@interface ToDoItem : NSObject<NSCoding>
 
+@property (nonatomic, copy, readonly) NSString *taskId;
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, assign, readonly) BOOL completed;
 @property (nonatomic, strong, readonly) NSMutableArray<ToDoItem *> *subtasks;
-@property (nonatomic, copy, readonly) NSString *taskId;
 
 - (void)createTaskWithTitle:(NSString *)title;
 - (void)createSubtaskWithTitle:(NSString *)title parentTaskId:(NSString *)parentTaskId;
 - (void)editTaskWithTitle:(NSString *)newTitle;
 - (void)setTaskCompleted:(BOOL)completed;
 - (BOOL)isTaskCompleted;
-- (void)markSubtaskAndChildrenCompleted:(BOOL)completed;
+- (void)markTaskAndChildrenCompleted:(BOOL)completed;
 - (ToDoItem *)findSubtaskWithId:(NSString *)subtaskId;
 
 @end
