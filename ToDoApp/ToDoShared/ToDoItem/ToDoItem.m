@@ -18,7 +18,10 @@
 
 @implementation ToDoItem
 
-static NSUInteger rootTaskIdCounter = 1;
+NSString* rootTaskIdUserDefaultsKey = @"rootTaskIdUserDefaultsKey";
+NSString* taskIdCountersUserDefaultsKey = @"taskIdCountersUserDefaultsKey";
+
+static NSUInteger rootTaskIdCounter;
 static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
 
 // MARK: Lifecycle
@@ -29,6 +32,9 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
         _title = @"";
         _completed = NO;
         _subtasks = [[NSMutableArray<ToDoItem *> alloc] init];
+        
+        rootTaskIdCounter = [self loadRootTaskIdFromUserDefaults];
+        taskIdCounters = [self loadTaskIdCountersFromUserDefaults];
     }
     return self;
 }
@@ -39,8 +45,11 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
         _taskId = [coder decodeObjectForKey:@"TaskId"];
         _title = [coder decodeObjectForKey:@"Title"];
         _completed = [coder decodeBoolForKey:@"Completed"];
-        NSMutableArray<ToDoItem *> *array = [coder decodeObjectForKey:@"Subtasks"];
-        _subtasks = [[NSMutableArray<ToDoItem *> alloc] initWithArray:array];
+        NSMutableArray<ToDoItem *> *subTasksArray = [coder decodeObjectForKey:@"Subtasks"];
+        _subtasks = [[NSMutableArray<ToDoItem *> alloc] initWithArray:subTasksArray];
+        
+        NSMutableDictionary<NSString *, NSNumber *> *taskIdCountersDictionary = [coder decodeObjectForKey:@"TaskIdCounters"];
+        taskIdCounters = [[NSMutableDictionary<NSString *, NSNumber *> alloc] initWithDictionary:taskIdCountersDictionary];
     }
     return self;
 }
@@ -50,6 +59,8 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
     [coder encodeObject:_title forKey:@"Title"];
     [coder encodeBool:_completed forKey:@"Completed"];
     [coder encodeObject:_subtasks forKey:@"Subtasks"];
+    
+    [coder encodeObject:taskIdCounters forKey:@"TaskIdCounters"];
 }
 
 - (void)dealloc
@@ -63,8 +74,13 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
 
 // MARK: Public functions
 - (void)createTaskWithTitle:(NSString *)title {
+    if (!rootTaskIdCounter) {
+        rootTaskIdCounter = 1;
+    }
+    
     self.title = title;
     self.taskId = [NSString stringWithFormat:@"%lu", (unsigned long)(rootTaskIdCounter++)];
+    [self saveRootTaskIdToUserDefaults];
 }
 
 - (void)createSubtaskWithTitle:(NSString *)title parentTaskId:(NSString *)parentTaskId {
@@ -81,6 +97,7 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
     self.taskId = [NSString stringWithFormat:@"%@.%lu", parentTaskId ?: @"", [counter unsignedLongValue]];
     
     taskIdCounters[parentTaskId] = @(counter.unsignedIntegerValue + 1);
+    [self saveTaskIdCountersToUserDefaults];
 }
 
 - (void)editTaskWithTitle:(NSString *)newTitle {
@@ -114,6 +131,32 @@ static NSMutableDictionary<NSString *, NSNumber *> *taskIdCounters;
         }
     }
     return nil;
+}
+
+// MARK: Private function - User defaults
+- (void)saveRootTaskIdToUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(rootTaskIdCounter) forKey:rootTaskIdUserDefaultsKey];
+    [defaults synchronize];
+}
+
+- (NSUInteger)loadRootTaskIdFromUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults integerForKey:rootTaskIdUserDefaultsKey];
+}
+
+- (void)saveTaskIdCountersToUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *encodedTaskIdCounters = [NSKeyedArchiver archivedDataWithRootObject:taskIdCounters];
+    [defaults setObject:encodedTaskIdCounters forKey:taskIdCountersUserDefaultsKey];
+    [defaults synchronize];
+}
+
+- (NSMutableDictionary<NSString *, NSNumber *> *)loadTaskIdCountersFromUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *encodedTaskIdCounters = [defaults objectForKey:taskIdCountersUserDefaultsKey];
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithData:encodedTaskIdCounters];
 }
 
 @end
